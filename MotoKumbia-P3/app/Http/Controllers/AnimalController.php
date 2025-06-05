@@ -12,7 +12,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        //prueba
     }
 
     /**
