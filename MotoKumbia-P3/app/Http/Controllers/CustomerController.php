@@ -7,62 +7,44 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Mostrar lista de clientes
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customers.index', compact('customers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Mostrar formulario para crear cliente
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Guardar cliente nuevo
     public function store(Request $request)
-{
-    //
-
-    return redirect('/motorcycles');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Customer $customer)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'telefono' => 'required|string|max:255',
+        ]);
+
+        Customer::create($request->only('nombre', 'telefono'));
+
+        return redirect()->route('customers.index')->with('success', 'Cliente creado correctamente.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Customer $customer)
+    // Eliminar cliente (solo si no tiene motos asociadas)
+    public function destroy($id)
     {
-        //
-    }
+        $customer = Customer::findOrFail($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
+        if ($customer->motorcycles()->count() > 0) {
+            return redirect()->route('customers.index')
+                ->with('error', 'No se puede eliminar un cliente que tiene motos asignadas.');
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Customer $customer)
-    {
-        //
+        $customer->delete();
+
+        return redirect()->route('customers.index')->with('success', 'Cliente eliminado correctamente.');
     }
 }
