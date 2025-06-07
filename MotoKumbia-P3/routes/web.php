@@ -14,3 +14,6 @@ Route::get('/modulo2', function () {
 
 //crea una ruta post que mande a Animal:store
 Route::post('/animal/store', AnimalController::class . '@store')->name('animal.store');
+
+
+Route::resource('motorcycles', MotorcycleController::class);
