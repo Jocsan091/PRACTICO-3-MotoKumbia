@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombreMoto");
             $table->string("patente");
-            $table->boolean("en taller")-> default(false);
+            $table->boolean("en_taller")-> default(false);
+            
         });
     }
 
