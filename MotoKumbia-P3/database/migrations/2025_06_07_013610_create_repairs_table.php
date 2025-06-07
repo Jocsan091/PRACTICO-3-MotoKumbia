@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('detalle_reparacion')->nullable();
             $table->integer('precio')->nullable();
             $table->unsignedBigInteger('moto_id')->nullable();
+            $table->foreign('moto_id')->references('id')->on('motos')->onDelete('set null');
             $table->timestamps();
-
         });
     }
 
