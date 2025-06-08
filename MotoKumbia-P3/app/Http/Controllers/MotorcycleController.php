@@ -14,8 +14,8 @@ class MotorcycleController extends Controller
 
     public function create()
     {
-
-        return view('motorcycles.create');
+        $customers = Customer::all();
+        return view('modulo2.create', compact('customers'));
     }
 
     public function store(Request $request)
