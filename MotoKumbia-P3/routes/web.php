@@ -15,16 +15,8 @@ Route::get('/modulo1', function () {
     return view('modulo1');
 })->name('modulo1');
 
-Route::get('/modulo2', function () {
-    return view('modulo2');
-})->name('motorcycles');
-**/
 Route::resource('modulo2', MotorcycleController::class);
 
-// Repitido según tu código original
-Route::get('/modulo2', function () {
-    return view('modulo2');
-})->name('motorcycles');
 
 // Ruta POST
 Route::post('/animal/store', AnimalController::class . '@store')
@@ -34,6 +26,5 @@ Route::post('/animal/store', AnimalController::class . '@store')
 Route::resource('customers', CustomerController::class)
     ->only(['index', 'create', 'store', 'destroy']);
 
-Route::resource('motorcycles', MotorcycleController::class);
 
-Route::resource('modulo2', MotorcycleController::class);
+
