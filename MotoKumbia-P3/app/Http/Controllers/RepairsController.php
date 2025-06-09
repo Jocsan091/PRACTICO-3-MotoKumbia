@@ -12,7 +12,8 @@ class RepairsController extends Controller
      */
     public function index()
     {
-        //
+        $repairs = Repair::all();
+        return view('repairs.index', compact('repairs'));
     }
 
     /**

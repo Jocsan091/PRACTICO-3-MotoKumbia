@@ -6,10 +6,9 @@ use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\RepairsController;
 use App\Http\Controllers\CustomerController;
 
+
 // Rutas GET
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::view('/', 'welcome')->name('welcome');
 
 Route::get('/modulo1', function () {
     return view('modulo1');
@@ -26,5 +25,9 @@ Route::post('/animal/store', AnimalController::class . '@store')
 Route::resource('customers', CustomerController::class)
     ->only(['index', 'create', 'store', 'destroy']);
 
+
+// Módulo 3: Reparaciones
+Route::get('/reparaciones', [RepairsController::class, 'index'])
+     ->name('repairs.index');
 
 
