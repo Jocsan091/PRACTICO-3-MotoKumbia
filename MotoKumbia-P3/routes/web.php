@@ -15,17 +15,17 @@ Route::get('/modulo1', function () {
     return view('modulo1');
 })->name('modulo1');
 
-
+/**probando el modo resource
 Route::get('/modulo2', function () {
     return view('modulo2');
 })->name('motorcycles');
+**/
+Route::resource('modulo2', MotorcycleController::class);
 
 
 
 Route::post('/animal/store', AnimalController::class . '@store')->name('animal.store');
 
-
-Route::resource('motorcycles', MotorcycleController::class);
 
 
 

@@ -21,7 +21,7 @@
         <label for="en_taller">En Taller:</label>
         <input type="checkbox" id="en_taller" name="en_taller" value="1"><br><br>
 
-        <label for="cliente_id">Cliente ID:</label><br>
+        <label for="customer_id">Cliente ID:</label><br>
         <input type="number" id="customer_id" name="customer_id"><br><br>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
