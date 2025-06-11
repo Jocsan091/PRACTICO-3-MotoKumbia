@@ -28,7 +28,7 @@ Route::resource('customers', CustomerController::class)
 
 // Módulo 3: Reparaciones 
 Route::resource('repairs', RepairsController::class)
-     ->only(['index','create','store','edit','update'])
+     ->only(['index','create','store','edit','update','show','destroy'])
      ->names('repairs');
 
 

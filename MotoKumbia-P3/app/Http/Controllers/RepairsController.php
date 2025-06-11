@@ -14,26 +14,12 @@ class RepairsController extends Controller
         return view('repairs.index', compact('repairs'));
     }
 
-    /**
-     * GET /repairs/create
-     */
     public function create()
-    
     {
-        // Para pruebas 
-        $motos = Motorcycle::all();
-
-        return view('repairs.create', compact('motos'));
-    }
-    
-    /*{
-        $motos = Motorcycle::all('en_taller', false)->get();
+        $motos = Motorcycle::where('en_taller', false)->get();
         return view('repairs.create', compact('motos'));
     }
 
-    /**
-     * POST /repairs
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -44,40 +30,48 @@ class RepairsController extends Controller
             'moto_id'       => $data['moto_id'],
             'fecha_ingreso' => now(),
         ]);
-
         $repair->motorcycle()->update(['en_taller' => true]);
 
         return redirect()->route('repairs.index')
                          ->with('success', 'Reparación ingresada correctamente.');
     }
 
-    
     public function edit(Repair $repair)
     {
         return view('repairs.edit', compact('repair'));
     }
 
-    
     public function update(Request $request, Repair $repair)
     {
+        // Limpiar separadores de miles
+        $rawPrecio = str_replace(['.', ','], '', $request->input('precio'));
+        $request->merge(['precio' => $rawPrecio]);
+
         $data = $request->validate([
-            'detalle' => 'required|string',
-            'precio'  => 'required|numeric',
+            'detalle_reparacion' => 'required|string',
+            'precio'             => 'required|numeric',
         ]);
 
         $repair->update([
-            'detalle'      => $data['detalle'],
-            'precio'       => $data['precio'],
-            'fecha_salida' => now(),
+            'detalle_reparacion' => $data['detalle_reparacion'],
+            'precio'             => $data['precio'],
+            'fecha_salida'       => now(),
         ]);
-
         $repair->motorcycle()->update(['en_taller' => false]);
 
         return redirect()->route('repairs.index')
                          ->with('success', 'Reparación cerrada correctamente.');
     }
 
-    
-    public function show(Repair $repair) {}
-    public function destroy(Repair $repair) {}
+    public function show(Repair $repair)
+    {
+        return view('repairs.show', compact('repair'));
+    }
+
+    public function destroy(Repair $repair)
+    {
+        $repair->delete();
+        return redirect()->route('repairs.index')
+                         ->with('success', 'Reparación eliminada.');
+    }
 }

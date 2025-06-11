@@ -3,6 +3,17 @@
 @section('content')
 <div class="container py-4">
   <h2>Ingreso a Reparación</h2>
+
+  @if($errors->any())
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        @foreach($errors->all() as $err)
+          <li>{{ $err }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
   <form action="{{ route('repairs.store') }}" method="POST">
     @csrf
     <div class="mb-3">
