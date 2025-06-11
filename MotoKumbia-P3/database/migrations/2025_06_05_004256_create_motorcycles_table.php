@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string("patente")->unique();
             $table->boolean("en_taller")->default(false);
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
+
         });
     }
 
