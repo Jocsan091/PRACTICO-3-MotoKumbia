@@ -11,53 +11,41 @@ class MotorcycleController extends Controller
     public function index()
     {
         $motorcycles = Motorcycle::with('customer')->get();
-        return view('modulo2.index', compact('motorcycles'));
+        return view('motorcycles.index', compact('motorcycles'));
     }
 
     public function create()
     {
         $customers = Customer::all();
-        return view('modulo2.create', compact('customers'));
+        return view('motorcycles.create', compact('customers'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombreMoto' => 'required|string|max:255',
-            'patente' => 'required|string|max:6',
-            'en_taller' => 'boolean',
-            'customer_id' => 'nullable|exists:customers,id'
+//se le puso unique para que no se repita
+            'patente' => 'required|string|max:6|unique:motorcycles,patente',
+            'en_taller' => 'nullable|boolean',
+            'customer_id' => 'nullable|exists:customers,id'//se le puso nullable porque no habian datos
         ]);
 
         $request->merge(['en_taller' => $request->has('en_taller')]);
 
         Motorcycle::create($request->all());
 
-        return redirect()->route('modulo2.index')->with('success', 'Motocicleta agregada exitosamente.');
+        return redirect()->route('motorcycles.index')->with('success', 'Motocicleta agregada exitosamente.');
     }
 
-    public function show(Motorcycle $modulo2)
+    public function show(Motorcycle $motorcycle)
     {
-        return view('modulo2.show', compact('modulo2'));
+        return view('motorcycles.show', compact('motorcycle'));
     }
 
-    public function edit(Motorcycle $modulo2)
+    public function destroy(Motorcycle $motorcycle)
     {
+        $motorcycle->delete();
 
-    }
-
-
-    public function update(Request $request, Motorcycle $modulo2)
-    {
-        
-    }
-
-
-    public function destroy(Motorcycle $modulo2)
-    {
-        $modulo2->delete();
-
-        return redirect()->route('modulo2.index')->with('success', 'Motocicleta eliminada correctamente.');
+        return redirect()->route('motorcycles.index')->with('success', 'Motocicleta eliminada correctamente.');
     }
 }
 
