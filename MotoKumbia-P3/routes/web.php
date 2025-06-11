@@ -26,15 +26,10 @@ Route::resource('customers', CustomerController::class)
     ->only(['index', 'create', 'store', 'destroy']);
 
 
-// Módulo 3: Reparaciones
-Route::get('/reparaciones', [RepairsController::class, 'index'])
-     ->name('repairs.index');
-
-Route::post('/reparaciones/ingreso', [RepairsController::class, 'ingreso'])
-     ->name('repairs.ingreso');
-
-Route::post('/reparaciones/salida', [RepairsController::class, 'salida'])
-     ->name('repairs.salida');
+// Módulo 3: Reparaciones 
+Route::resource('repairs', RepairsController::class)
+     ->only(['index','create','store','edit','update'])
+     ->names('repairs');
 
 
 
