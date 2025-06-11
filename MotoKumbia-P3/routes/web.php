@@ -30,4 +30,12 @@ Route::resource('customers', CustomerController::class)
 Route::get('/reparaciones', [RepairsController::class, 'index'])
      ->name('repairs.index');
 
+Route::post('/reparaciones/ingreso', [RepairsController::class, 'ingreso'])
+     ->name('repairs.ingreso');
+
+Route::post('/reparaciones/salida', [RepairsController::class, 'salida'])
+     ->name('repairs.salida');
+
+
+
 
