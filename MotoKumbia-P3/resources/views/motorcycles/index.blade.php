@@ -3,7 +3,7 @@
 @section('content')
 <h2>Listado de Motocicletas</h2>
 
-<a href="{{ route('modulo2.create') }}" class="btn btn-success mb-3">Agregar nueva moto</a>
+<a href="{{ route('motorcycles.create') }}" class="btn btn-success mb-3">Agregar nueva moto</a>
 
 @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
@@ -13,9 +13,9 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
             <th>Patente</th>
             <th>En taller</th>
+            <th>Cliente</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -23,13 +23,12 @@
         @foreach ($motorcycles as $motorcycle)
         <tr>
             <td>{{ $motorcycle->id }}</td>
-            <td>{{ $motorcycle->nombreMoto }}</td>
             <td>{{ $motorcycle->patente }}</td>
             <td>{{ $motorcycle->en_taller ? 'Sí' : 'No' }}</td>
+            <td>{{ $motorcycle->customer ? $motorcycle->customer->nombre : 'Sin cliente' }}</td>
             <td>
-                <a href="{{ route('modulo2.show', $motorcycle->id) }}" class="btn btn-info btn-sm">Ver</a>
-                <a href="{{ route('modulo2.edit', $motorcycle->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                <form action="{{ route('modulo2.destroy', $motorcycle->id) }}" method="POST" style="display:inline;">
+                <a href="{{ route('motorcycles.show', $motorcycle->id) }}" class="btn btn-info btn-sm">Ver</a>
+                <form action="{{ route('motorcycles.destroy', $motorcycle->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>

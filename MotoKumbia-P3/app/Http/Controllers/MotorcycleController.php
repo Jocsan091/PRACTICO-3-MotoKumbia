@@ -37,9 +37,11 @@ class MotorcycleController extends Controller
     }
 
     public function show(Motorcycle $motorcycle)
-    {
-        return view('motorcycles.show', compact('motorcycle'));
-    }
+{
+    $motorcycle->load('customer');  // carga la relación
+    return view('motorcycles.show', compact('motorcycle'));
+}
+
 
     public function destroy(Motorcycle $motorcycle)
     {

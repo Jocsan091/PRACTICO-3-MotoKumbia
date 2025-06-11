@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('motorcycles', function (Blueprint $table) {
             $table->id();
-            $table->string("nombreMoto");
             $table->string("patente")->unique();
             $table->boolean("en_taller")->default(false);
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');

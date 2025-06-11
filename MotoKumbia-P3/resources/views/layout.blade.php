@@ -20,7 +20,7 @@
         <a class="nav-link" href=" {{ route('modulo1') }} ">modulo1 <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('modulo2.index') }}">módulo 2</a>
+        <a class="nav-link" href="{{ route('motorcycles.index') }}">Motos</a>
       </li>
       <li class="nav-item {{ request()->routeIs('repairs.*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('repairs.index') }}">Repairs</a>
