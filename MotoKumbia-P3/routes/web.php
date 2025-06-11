@@ -14,7 +14,7 @@ Route::get('/modulo1', function () {
     return view('modulo1');
 })->name('modulo1');
 
-Route::resource('modulo2', MotorcycleController::class);
+Route::resource('motorcycles', MotorcycleController::class);
 
 
 // Ruta POST
