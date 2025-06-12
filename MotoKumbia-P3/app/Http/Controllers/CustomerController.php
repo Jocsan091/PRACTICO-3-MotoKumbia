@@ -1,50 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\Customer;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerController extends Controller
+class Customer extends Model
 {
-    // Mostrar lista de clientes
-    public function index()
-    {
-        $customers = Customer::all();
-        return view('customers.index', compact('customers'));
-    }
+    use HasFactory;
 
-    // Mostrar formulario para crear cliente
-    public function create()
-    {
-        return view('customers.create');
-    }
+    // Campos que se pueden asignar masivamente
+    protected $fillable = [
+        'name',
+        'phone',
+    ];
 
-    // Guardar cliente nuevo
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'telefono' => 'required|string|max:255',
-        ]);
-
-        Customer::create($request->only('nombre', 'telefono'));
-
-        return redirect()->route('customers.index')->with('success', 'Cliente creado correctamente.');
-    }
-
-    // Eliminar cliente (solo si no tiene motos asociadas)
-    public function destroy($id)
-    {
-        $customer = Customer::findOrFail($id);
-
-        if ($customer->motorcycles()->count() > 0) {
-            return redirect()->route('customers.index')
-                ->with('error', 'No se puede eliminar un cliente que tiene motos asignadas.');
-        }
-
-        $customer->delete();
-
-        return redirect()->route('customers.index')->with('success', 'Cliente eliminado correctamente.');
-    }
-}
+   
