@@ -22,7 +22,6 @@ Route::post('/animal/store', AnimalController::class . '@store')
     ->name('animal.store');
 
 // Rutas customers
-use App\Http\Controllers\CustomerController;
 
 Route::resource('customers', CustomerController::class);
 
