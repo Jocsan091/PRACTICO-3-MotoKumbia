@@ -8,25 +8,30 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href=" {{ route('modulo1') }} ">modulo1 <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('modulo1') }}">modulo1 <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('motorcycles.index') }}">Motos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('customers.index') }}">Clientes</a>
       </li>
       <li class="nav-item {{ request()->routeIs('repairs.*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('repairs.index') }}">Repairs</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,21 +51,16 @@
     </form>
   </div>
 </nav>
+
 <h1>MotoKumbia</h1>
+
 <div class="container">
-
-
-    @yield('content')
-
-
+  @yield('content')
 </div>
 
-
-
-<script src=" {{ asset('js/bootstrap.js')  }} "></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
 
 </body>
 </html>

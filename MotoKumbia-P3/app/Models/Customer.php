@@ -9,7 +9,8 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'telefono'];
+    
+    protected $fillable = ['name', 'phone'];
 
     // Relación con motos
     public function motorcycles()
