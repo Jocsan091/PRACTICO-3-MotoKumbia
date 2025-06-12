@@ -13,7 +13,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
+        <th>ID</th>
         <th>Patente</th>
         <th>Ingreso</th>
         <th>Salida</th>

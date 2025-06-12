@@ -1,18 +1,20 @@
 @extends('layout')
 
 @section('content')
-<div class="container py-5">
-  <div class="welcome-hero text-center">
-    <img src="{{ asset('images/logo') }}"
-         alt="MotoKumbia Logo"
-         class="welcome-logo">
+  <div class="welcome-hero py-5">
+    <div class="text-center">
+      
 
-    <h1 class="mb-3">¡Bienvenido a MotoKumbia!</h1>
+      <h1 class="display-4 mb-3">¡Bienvenido a MotoKumbia!</h1>
 
-    <p class="welcome-text mb-0">
-      Tu panel de gestión de taller: clientes, motos y reparaciones, 
-      todo al alcance de un clic desde el menú superior.
-    </p>
+      <p class="lead">
+        Tu panel de gestión de taller: clientes, motos y reparaciones,<br>
+        todo al alcance de un clic desde el menú superior.
+      </p>
+
+      <img src="{{ asset('imagenes/logo.png') }}"
+           alt="MotoKumbia Logo"
+           class="welcome-logo mb-4 rounded-circle shadow-sm">
+    </div>
   </div>
-</div>
 @endsection
