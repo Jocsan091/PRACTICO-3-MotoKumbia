@@ -22,8 +22,8 @@ Route::post('/animal/store', AnimalController::class . '@store')
     ->name('animal.store');
 
 // Rutas resource
-Route::resource('customers', CustomerController::class)
-    ->only(['index', 'create', 'store', 'destroy']);
+Route::resource('customers', CustomerController::class);
+
 
 
 // Módulo 3: Reparaciones 

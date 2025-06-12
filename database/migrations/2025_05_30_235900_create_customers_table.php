@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('telefono');
+            $table->string('name');               // antes: nombre
+            $table->string('email')->unique();    // agregado campo email
+            $table->string('phone');              // antes: telefono
             $table->timestamps();
         });
     }
